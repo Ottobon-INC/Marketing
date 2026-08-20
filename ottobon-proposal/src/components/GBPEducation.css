@@ -1,0 +1,96 @@
+/* ========================================
+   GBP Education Section
+   ======================================== */
+.gbp-edu {
+  background: var(--bg-white);
+  position: relative;
+  border-bottom: 1px solid var(--border-3);
+}
+
+.gbp-edu__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 64px;
+}
+.gbp-edu__header .pill {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.gbp-edu__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.gbp-edu__card {
+  background: var(--bg-offwhite);
+  padding: 40px;
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border-2);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--t-normal), box-shadow var(--t-normal);
+}
+.gbp-edu__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.gbp-edu__icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-md);
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+}
+.bg-red {
+  background: #fee2e2;
+  color: #ef4444;
+}
+.bg-green {
+  background: var(--teal-100);
+  color: var(--teal-500);
+}
+
+.gbp-edu__card h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--navy-800);
+  margin-bottom: 16px;
+}
+
+.gbp-edu__card p {
+  font-size: .95rem;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+.gbp-edu__highlight {
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--bg-white);
+  border-left: 4px solid var(--teal-500);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: .9rem;
+  color: var(--navy-800);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gbp-edu__grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .gbp-edu__card {
+    padding: 32px 24px;
+  }
+}

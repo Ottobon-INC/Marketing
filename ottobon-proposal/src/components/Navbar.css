@@ -1,0 +1,124 @@
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  padding: 18px 0;
+  transition: padding var(--t-normal), background var(--t-normal), box-shadow var(--t-normal);
+}
+
+.nav--scrolled {
+  padding: 10px 0;
+  background: rgba(250, 246, 241, .92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border-1);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: transform var(--t-fast);
+}
+.nav__brand:hover { transform: scale(1.02); }
+
+.nav__logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav__brand-divider {
+  font-size: 1.2rem;
+  color: var(--border-3);
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+}
+
+.nav__partner-logo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav__logo-icon {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav__brand-text { line-height: 1.15; }
+.nav__brand-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: .95rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  color: var(--navy-800);
+}
+.nav__brand-sub {
+  display: block;
+  font-size: .52rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: .12em;
+}
+
+/* Menu */
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav__link {
+  background: none;
+  border: none;
+  padding: 7px 14px;
+  font-size: .84rem;
+  font-weight: 500;
+  color: var(--text-body);
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.nav__link:hover {
+  color: var(--navy-800);
+  background: var(--bg-light-blue);
+}
+
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  padding: 9px 22px;
+  border: none;
+  border-radius: var(--r-full);
+  background: var(--navy-800);
+  color: #fff;
+  font-size: .84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.nav__cta:hover {
+  background: var(--navy-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-navy);
+}
+
+@media (max-width: 768px) {
+  .nav__link { display: none; }
+  .nav__brand-text { display: none; }
+}
