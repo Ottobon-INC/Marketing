@@ -119,6 +119,10 @@
 }
 
 @media (max-width: 768px) {
+  .nav { padding: 12px 0; }
   .nav__link { display: none; }
   .nav__brand-text { display: none; }
+  .nav__cta { padding: 7px 16px; font-size: 0.78rem; }
+  .nav__logo-icon, .nav__partner-logo { height: 32px; }
+  .nav__brand-divider { font-size: 1rem; }
 }

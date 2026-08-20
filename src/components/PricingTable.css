@@ -164,14 +164,13 @@
 
 /* Responsive */
 @media (max-width: 968px) {
-  .pricing__grid { grid-template-columns: repeat(2, 1fr); max-width: 800px; }
+  .pricing__grid { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; }
 }
 @media (max-width: 768px) {
   .trust { flex-direction: column; gap: 16px; }
   .trust__div { width: 100%; height: 1px; }
 }
 @media (max-width: 640px) {
-  .pricing__grid { grid-template-columns: 1fr; }
   .plan { padding: 32px 24px; }
   .pricing-modal { padding: 32px 24px; }
 }

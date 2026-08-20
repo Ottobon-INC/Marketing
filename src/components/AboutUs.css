@@ -325,5 +325,11 @@
 }
 
 @media (max-width: 768px) {
-  .goal-banner { padding: 32px 24px; }
+  .about-section { padding: 60px 0; }
+  .goal-banner { padding: 24px 20px; }
+  .goal-banner__text { font-size: 1.2rem; }
+  .ecosystem__hub { width: 120px; height: 120px; }
+  .ecosystem__hub-logo { width: 32px; height: 32px; font-size: 1rem; }
+  .ecosystem__card { padding: 24px 20px; }
+  .node-title { font-size: 1rem; }
 }
