@@ -125,3 +125,63 @@ a.contact-item:hover {
   .cta__card { flex-direction: column; text-align: center; padding: 32px 24px; gap: 20px; }
   .cta__grid { grid-template-columns: 1fr; gap: 12px; }
 }
+
+/* Form */
+.cta__form-wrapper {
+  width: 100%;
+  max-width: 900px;
+  background: var(--bg-offwhite);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cta__form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.cta__form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cta__input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-3);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-body);
+  background: var(--bg-white);
+  outline: none;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.cta__input:focus {
+  border-color: var(--navy-500);
+  box-shadow: 0 0 0 3px rgba(30, 111, 186, 0.1);
+}
+
+.cta__submit {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .cta__form-inputs {
+    flex-direction: row;
+  }
+  .cta__submit {
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+  }
+}

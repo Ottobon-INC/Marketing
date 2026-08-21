@@ -1,8 +1,51 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './CTASection.css';
 
 function CTASection() {
   const ref = useRef(null);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.phone) {
+      alert('Please fill all the details.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    const submissionData = new FormData();
+    submissionData.append("access_key", "25df8ad3-466d-4b5b-bb79-0f9cb42b5220");
+    submissionData.append("name", formData.name);
+    submissionData.append("email", formData.email);
+    submissionData.append("phone", formData.phone);
+    submissionData.append("subject", "New Contact Request from Ottobon Proposal");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submissionData
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Details submitted successfully! We will get back to you soon.");
+        setFormData({ name: '', email: '', phone: '' });
+      } else {
+        console.error("Web3Forms error:", data);
+        alert("There was an issue submitting your form. Please try again.");
+      }
+    } catch (error) {
+      alert("Error submitting the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -73,12 +116,20 @@ function CTASection() {
           ))}
         </div>
 
-        {/* Action */}
-        <div className="cta__action reveal reveal-d2">
-          <div className="btn btn--primary" style={{ pointerEvents: 'none', cursor: 'default' }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92V19.92C22 20.48 21.56 20.94 21 20.97C20.09 21.04 19.18 20.98 18.29 20.8C15.35 20.13 12.61 18.72 10.33 16.66C8.19 14.73 6.49 12.35 5.34 9.66C5.07 9.02 4.85 8.35 4.68 7.66C4.5 6.77 4.43 5.86 4.47 4.95C4.5 4.39 4.96 3.95 5.52 3.95H8.52C8.99 3.94 9.41 4.26 9.52 4.72C9.63 5.23 9.79 5.73 10.01 6.2C10.17 6.53 10.08 6.92 9.79 7.16L8.79 8.01C10.34 11.12 12.88 13.66 16 15.21L16.85 14.21C17.09 13.92 17.48 13.83 17.81 13.99C18.28 14.21 18.78 14.37 19.29 14.48C19.75 14.59 20.07 15.01 20.06 15.48V16.92H22Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/></svg>
-            Contact us for more details
-          </div>
+        {/* Action / Form */}
+        <div className="cta__form-wrapper reveal reveal-d2">
+          <form onSubmit={handleFormSubmit} className="cta__form">
+            <h3 className="cta__form-title">Send us your details</h3>
+            <div className="cta__form-inputs">
+              <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name" className="cta__input" required />
+              <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email Address" className="cta__input" required />
+              <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Phone Number" className="cta__input" required />
+            </div>
+            <button type="submit" className="btn btn--primary cta__submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Submit Details'}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92V19.92C22 20.48 21.56 20.94 21 20.97C20.09 21.04 19.18 20.98 18.29 20.8C15.35 20.13 12.61 18.72 10.33 16.66C8.19 14.73 6.49 12.35 5.34 9.66C5.07 9.02 4.85 8.35 4.68 7.66C4.5 6.77 4.43 5.86 4.47 4.95C4.5 4.39 4.96 3.95 5.52 3.95H8.52C8.99 3.94 9.41 4.26 9.52 4.72C9.63 5.23 9.79 5.73 10.01 6.2C10.17 6.53 10.08 6.92 9.79 7.16L8.79 8.01C10.34 11.12 12.88 13.66 16 15.21L16.85 14.21C17.09 13.92 17.48 13.83 17.81 13.99C18.28 14.21 18.78 14.37 19.29 14.48C19.75 14.59 20.07 15.01 20.06 15.48V16.92H22Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/></svg>
+            </button>
+          </form>
         </div>
       </div>
     </section>

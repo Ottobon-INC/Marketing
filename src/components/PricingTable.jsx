@@ -38,7 +38,7 @@ function PricingTable() {
     // Using Web3Forms to send email without a backend
     const submissionData = new FormData();
     // TODO: Replace with your actual Web3Forms access key
-    submissionData.append("access_key", "3ddebc36-d033-4cba-a4a6-94d1e30834a8");
+    submissionData.append("access_key", "25df8ad3-466d-4b5b-bb79-0f9cb42b5220");
     submissionData.append("name", formData.name);
     submissionData.append("email", formData.email);
     submissionData.append("phone", formData.phone);
@@ -101,31 +101,7 @@ function PricingTable() {
         </div>
 
         <div className="pricing__grid">
-          {/* Plan 0 - Starter */}
-          <div className="plan reveal reveal-d0">
-            <div className="plan__badge plan__badge--orange">Starter</div>
-            <h3 className="plan__title">Institutional Starter Bundle</h3>
-            <div className="plan__price">₹100 <span>/ year</span></div>
-            <p className="plan__desc">
-              A foot-in-the-door offer to build trust. Up to 20 custom design posters for your institution.
-            </p>
-            <ul className="plan__features">
-              {[
-                'Up to 20 Custom Posters',
-                'Birthday & Event Wishes',
-                'Professional Design',
-                'Valid for Entire Year'
-              ].map((f, i) => (
-                <li key={i}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" /></svg>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <div className="plan__cta">
-              <button className="btn btn--ghost" onClick={() => go('cta')}>Get Started</button>
-            </div>
-          </div>
+
 
           {/* Plan 1 */}
           <div className="plan plan--highlight reveal reveal-d1">
