@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
 
 function HeroSection() {
+  const navigate = useNavigate();
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
@@ -54,7 +56,7 @@ function HeroSection() {
           </ul>
 
           <div className="hero__actions">
-            <button className="btn btn--primary" onClick={() => go('cta')}>
+            <button className="btn btn--primary" onClick={() => navigate('/get-started')}>
               Let's Build Your Growth System
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </button>

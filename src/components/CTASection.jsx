@@ -34,6 +34,9 @@ function CTASection() {
       const data = await response.json();
 
       if (data.success) {
+        if (window.fbq) {
+          window.fbq('track', 'Lead');
+        }
         alert("Details submitted successfully! We will get back to you soon.");
         setFormData({ name: '', email: '', phone: '' });
       } else {

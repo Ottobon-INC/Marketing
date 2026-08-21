@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PricingTable.css';
 
 const availableServices = [
@@ -10,6 +11,7 @@ const availableServices = [
 
 function PricingTable() {
   const ref = useRef(null);
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedServices, setSelectedServices] = useState([]);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
@@ -53,6 +55,9 @@ function PricingTable() {
       const data = await response.json();
 
       if (data.success) {
+        if (window.fbq) {
+          window.fbq('track', 'Lead');
+        }
         alert("Request submitted successfully! We will get back to you soon.");
         setIsModalOpen(false);
         setSelectedServices([]);
@@ -124,7 +129,7 @@ function PricingTable() {
               ))}
             </ul>
             <div className="plan__cta">
-              <button className="btn btn--primary" onClick={() => go('cta')}>
+              <button className="btn btn--primary" onClick={() => navigate('/get-started')}>
                 Get Bundle Pricing
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>

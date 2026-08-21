@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
   const navRef = useRef(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
@@ -12,12 +15,27 @@ function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [location]);
+
+  const go = (id) => {
+    if (location.pathname !== '/') {
+      navigate('/#' + id);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="nav" ref={navRef}>
       <div className="container nav__inner">
-        <div className="nav__brand" onClick={() => go('hero')}>
+        <div className="nav__brand" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
           <div className="nav__logo-group">
             <img src="/ottobon-logo.png" alt="Ottobon" className="nav__logo-icon" />
             <div className="nav__brand-text">
@@ -31,8 +49,8 @@ function Navbar() {
           <button className="nav__link" onClick={() => go('services')}>Services</button>
           <button className="nav__link" onClick={() => go('journey')}>How It Works</button>
           <button className="nav__link" onClick={() => go('pricing')}>Pricing</button>
-          <button className="nav__link" onClick={() => go('cta')}>Contact Us</button>
-          <button className="nav__cta" onClick={() => go('cta')}>
+          <button className="nav__link" onClick={() => navigate('/get-started')}>Contact Us</button>
+          <button className="nav__cta" onClick={() => navigate('/get-started')}>
             Get Started
             <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
