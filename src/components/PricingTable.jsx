@@ -37,20 +37,23 @@ function PricingTable() {
 
     setIsSubmitting(true);
 
-    // Using Web3Forms to send email without a backend
-    const submissionData = new FormData();
-    // TODO: Replace with your actual Web3Forms access key
-    submissionData.append("access_key", "25df8ad3-466d-4b5b-bb79-0f9cb42b5220");
-    submissionData.append("name", formData.name);
-    submissionData.append("email", formData.email);
-    submissionData.append("phone", formData.phone);
-    submissionData.append("services_selected", selectedServices.join(', '));
-    submissionData.append("subject", "New Custom Service Request from Ottobon Proposal");
+    const payload = {
+      access_key: "ec88ce4c-9c2d-4c1d-b7a4-ecfb520753b5",
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      services_selected: selectedServices.join(', '),
+      subject: "New Custom Service Request from Ottobon Proposal"
+    };
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: submissionData
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
       });
       const data = await response.json();
 
